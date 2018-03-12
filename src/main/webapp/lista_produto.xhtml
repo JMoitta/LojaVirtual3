@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head>
+	<title>Teste</title>
+</h:head>
+<h:body>
+	<h:form prependId="false">
+		<pm:page>
+			<pm:header title="Title"></pm:header>
+
+			<pm:content>
+				<p:commandButton value="Inserir"
+					action="#{produtoCtrl.actionInserir}" />
+				<p:dataTable id="dataTableProduto" value="#{produtoCtrl.listagem}"
+					var="produto">
+					<p:column headerText="Codigo">
+						<h:outputText value="#{produto.id}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{produto.nome}" />
+					</p:column>
+
+					<p:column headerText="Preço">
+						<h:outputText value="#{produto.preco}" />
+					</p:column>
+
+					<p:column headerText="Ações">
+						<h:panelGroup>
+							<p:commandButton value="Alterar" action="form_produto"
+								style="width:46%;min-width:100px;" styleClass="ui-btn-inline">
+								<f:setPropertyActionListener value="#{produto}"
+									target="#{produtoCtrl.produto}" />
+							</p:commandButton>
+							<p:commandButton value="Excluir" update="dataTableProduto"
+								style="width:46%;min-width:100px;" styleClass="ui-btn-inline"
+								action="#{produtoCtrl.actionExcluir(produto)}">
+							</p:commandButton>
+						</h:panelGroup>
+					</p:column>
+				</p:dataTable>
+			</pm:content>
+		</pm:page>
+	</h:form>
+</h:body>
+</html>
