@@ -1,0 +1,96 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/LayoutModal.xhtml">
+	<ui:define name="tituloDaPagina">Pessoa</ui:define>
+	<ui:define name="tituloDaModal"><h1 style="text-align: center;"><h:outputText value="#{manterPessoaBean.pessoa.id > 0 ? 'Editar' : 'Nova' }"/> Pessoa</h1></ui:define>
+	<ui:define name="corpoDaPagina">
+		<h:form id="form-pessoa">
+		<f:metadata>
+			<f:viewParam name="pessoaId" value="#{manterPessoaBean.pessoa}" converter="PessoaConverter"/>
+		</f:metadata>
+		<p:growl id="messages" showDetail="false" closable="false" autoUpdate="true">
+    	</p:growl>
+
+				<!-- <p:outputLabel value="Codígo"  style="text-align: center;" styleClass="ui-grid-col-2"/>
+				<p:inputText value="#{manterPessoaBean.pessoa.id}" readonly="true" disabled="true" styleClass="ui-grid-col-2"/> -->
+			<p:fieldset legend="Dados Pessoas" style="margin-top:20px">			
+				<p:panelGrid columns="4" cellpadding="5" layout="grid">
+					<p:outputLabel value="Nome" style="text-align: center;" />
+					<p:inputText value="#{manterPessoaBean.pessoa.nome}" required="true" requiredMessage="Informe o Nome">
+					</p:inputText>
+					
+					<p:outputLabel value="CPF" style="text-align: center;" />
+					<p:inputMask value="#{manterPessoaBean.pessoa.cpf}" mask="999.999.999-99" required="true" requiredMessage="Informe um CPF." >
+					</p:inputMask>
+					
+					<p:outputLabel value="RG" style="text-align: center;" />
+					<p:inputText value="#{manterPessoaBean.pessoa.rg}" required="true" requiredMessage="Informe um RG." >
+					</p:inputText>
+					
+					<p:outputLabel value="Data de nascimento" />
+					<p:calendar value="#{manterPessoaBean.pessoa.dataNasc}" navigator="true" pattern="dd/MM/yyyy"
+						required="true" requiredMessage="Informe um data de nascimento.">
+					</p:calendar>
+	
+					<p:outputLabel value="Rua" />
+					<p:inputText value="#{manterPessoaBean.pessoa.rua}" ><!-- required="true" requiredMessage="Informe um rua."  -->
+					</p:inputText>
+					
+					<p:outputLabel value="Bairro" />
+					<p:inputText value="#{manterPessoaBean.pessoa.bairro}" ><!--  required="true" requiredMessage="Informe um bairro" -->
+					</p:inputText>
+					
+					<p:outputLabel value="Cidade" />
+					<p:inputText value="#{manterPessoaBean.pessoa.cidade}" ><!--  required="true" requiredMessage="Informe um cidade."  -->
+					</p:inputText>
+	
+					<p:outputLabel value="UF" style="text-align: center;" />
+					<p:inputText value="#{manterPessoaBean.pessoa.uf}" ><!--  required="true" requiredMessage="Informe um uf."  -->
+					</p:inputText>
+					
+					<p:outputLabel value="CEP" style="text-align: center;" />
+					<p:inputText value="#{manterPessoaBean.pessoa.cep}" ><!--  required="true" requiredMessage="Informe um cep."  -->
+					</p:inputText>
+					
+					<p:outputLabel value="E-mail" style="text-align: center;" />
+					<p:inputText value="#{manterPessoaBean.pessoa.email}" ><!--  required="true" requiredMessage="Informe um e-mail."  -->
+					</p:inputText>
+	
+					<p:outputLabel value="Senha" style="text-align: center;" />
+					<p:inputText value="#{manterPessoaBean.pessoa.senha}" ><!-- required="true" requiredMessage="Informe um senha."  -->
+					</p:inputText>
+					
+					<p:outputLabel value="Tipo" style="text-align: center;" />
+					<p:inputText value="#{manterPessoaBean.pessoa.tipo}" ><!-- required="true" requiredMessage="Informe um tipo."  -->
+					</p:inputText>
+				</p:panelGrid>
+			</p:fieldset>	
+			<p:fieldset id="field-fone" legend="Telefones" style="margin-top:20px">
+				<p:panelGrid columns="5" cellpadding="5" layout="grid" >
+					<p:commandButton value="Adicionar Telefone" update=":form-pessoa:field-fone" action="#{manterPessoaBean.adicionarTelefonePessoa}" immediate="true" />
+	       		</p:panelGrid>
+	       		<p:dataTable emptyMessage="Nenhum telefone encontrado" value="#{manterPessoaBean.pessoa.fones}"
+	       			var="fone">
+	       			<p:column headerText="Descrição">
+	       				<p:inputText value="#{fone.descricao}"/>
+	       			</p:column>
+	       			<p:column headerText="Número">
+	       				<p:inputText value="#{fone.numero}"/>
+	       			</p:column>
+	       			<p:column headerText="Ação">
+	       				<p:commandButton value="Excluir" action="#{manterPessoaBean.excluirTelefonePessoa(fone)}" update=":form-pessoa:field-fone" immediate="true"/>
+	       			</p:column>
+	       		</p:dataTable>
+			</p:fieldset>		
+			<p:toolbar style="margin-top:105px">
+				<f:facet name="right">
+					<p:commandButton value="Limpar" icon="ui-icon-close"/>
+					<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{manterPessoaBean.salvarPessoa}"/>
+				</f:facet>
+			</p:toolbar>
+		</h:form>
+	</ui:define>
+</ui:composition>

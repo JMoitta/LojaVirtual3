@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/LayoutPadrao.xhtml">
+	<ui:define name="tituloDaPagina">Administrar Pessoa</ui:define>
+	<ui:define name="corpoDaPagina">
+		<p:growl id="growl" showDetail="true" autoUpdate="true" life="3000"/>  
+		<center>
+			<h1>Pessoa</h1>
+		</center>
+		<p:commandButton value="Nova Pessoa" icon="ui-icon-document"
+			action="#{manterPessoaBean.abrirModalDePessoa(null)}">
+			<p:ajax
+                    event="dialogReturn"
+                    update=":mainForm:tabelaDePessoa"
+                    listener="#{manterPessoaBean.mostrarMensagemSucesso}" />
+		</p:commandButton>
+		<p:dataTable id="tabelaDePessoa" value="#{manterPessoaBean.pessoas}" var="pessoa" style="margin: 10px 0;" reflow="true"
+			styleClass="ui-corner-all">
+			<p:column headerText="Nome">
+				<h:outputText value="#{pessoa.nome}" />
+			</p:column>
+			<p:column headerText="CPF">
+				<h:outputText value="#{pessoa.cpf}" />
+			</p:column>
+			<p:column headerText="RG">
+				<h:outputText value="#{pessoa.rg}" />
+			</p:column>
+			<p:column headerText="Data de nascimento">
+				<h:outputText value="#{pessoa.dataNasc}" />
+			</p:column>
+			<p:column headerText="Ações">
+				<p:commandButton 
+					value="Alterar"
+					process="@this"
+					action="#{manterPessoaBean.abrirModalDePessoa(pessoa)}">
+					<p:ajax
+	                     event="dialogReturn"
+	                     update=":mainForm:tabelaDePessoa"
+	                     listener="#{manterPessoaBean.mostrarMensagemSucesso}" />
+				</p:commandButton>
+				<p:commandButton value="Excluir" action="#{manterPessoaBean.excluirPessoa(pessoa)}" ajax="false" update=":mainForm:tabelaDePessoa"/>
+			</p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>

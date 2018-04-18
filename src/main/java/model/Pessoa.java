@@ -1,16 +1,22 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "pessoa")
@@ -59,6 +65,9 @@ public class Pessoa implements Serializable {
 
 	@Column(name = "pes_tipo", length = 30)
 	private String tipo;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pessoa", cascade = CascadeType.ALL)
+	private List<Fone> fones = new ArrayList<>();
 
 	@Override
 	public int hashCode() {
@@ -186,4 +195,13 @@ public class Pessoa implements Serializable {
 		this.tipo = tipo;
 	}
 
+	public List<Fone> getFones() {
+		return fones;
+	}
+
+	public void setFones(List<Fone> fones) {
+		this.fones = fones;
+	}
+
+	
 }

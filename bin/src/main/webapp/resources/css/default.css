@@ -1,0 +1,53 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.supermercado-main {
+	width: 700px;
+	height: 570px;
+	margin: 50px auto;
+	margin-bottom: 0px;
+}
+
+#section-main .supermercado-main > thead {
+	height: 40px;	
+}
+
+#fo-tipo-manifestacao {
+	margin: 0 2px;
+	position: relative;
+}
+
+#grid1 {
+	width: 300px;
+	max-width: 23%;
+	padding: 0 5px;
+	height: 400px;
+	/* background: black; */
+	/* position: absolute; */
+	float: left;
+	height: 400px;
+}
+
+#grid2 {
+	width: 100%;
+	max-width: 55%;
+	padding: 0 5px;
+	height: 400px;
+	/* background: red; */
+	/* position: absolute; */
+	float: left;
+	height: 400px;
+}
+
+#grid3 {
+	width: 250px;
+	max-width: 20%;
+	padding: 0 5px;
+	height: 400px;
+	/* background: yellow; */
+	/* position: absolute; */
+	float: left;
+}

@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/LayoutPadrao.xhtml">
+	<ui:define name="tituloDaPagina">Administrar forma de pagamento</ui:define>
+	<ui:define name="corpoDaPagina">
+		<p:growl id="growl" showDetail="true" autoUpdate="true" life="3000"/>  
+		<center>
+			<h1>Forma de pagamento</h1>
+		</center>
+		<p:commandButton value="Nova Forma de Pagamento" icon="ui-icon-document"
+			action="#{manterFormaPgtoBean.abrirModalDeFormaPgto(null)}">
+			<p:ajax
+                    event="dialogReturn"
+                    update=":mainForm:tabelaDeFormaPgto"
+                    listener="#{manterFormaPgtoBean.mostrarMensagemSucesso}" />
+		</p:commandButton>
+		<p:dataTable
+			id="tabelaDeFormaPgto"
+			value="#{manterFormaPgtoBean.formaPgtos}" 
+			var="formaPgto" style="margin: 10px 0;" reflow="true"
+			emptyMessage="Nenhum forma de pagamento encontrada."
+			styleClass="ui-corner-all">
+			<p:column headerText="Descrição">
+				<h:outputText value="#{formaPgto.descricao}" />
+			</p:column>
+			<p:column headerText="Numero max. de parc.">
+				<h:outputText value="#{formaPgto.numMaxParc}" />
+			</p:column>
+			<p:column headerText="Numero padrao parc.">
+				<h:outputText value="#{formaPgto.numPadraoParc}" />
+			</p:column>
+			<p:column headerText="Intervalo em dias">
+				<h:outputText value="#{formaPgto.intervaloDias}" />
+			</p:column>
+			<p:column headerText="Percentual acres.">
+				<h:outputText value="#{formaPgto.percentualAcres}" />
+			</p:column>
+			<p:column headerText="Ações">
+				<p:commandButton 
+					value="Alterar"
+					process="@this"
+					action="#{manterFormaPgtoBean.abrirModalDeFormaPgto(formaPgto)}">
+					<p:ajax
+	                     event="dialogReturn"
+	                     update=":mainForm:tabelaDeFormaPgto"
+	                     listener="#{manterFormaPgtoBean.mostrarMensagemSucesso}" />
+				</p:commandButton>
+				<p:commandButton value="Excluir" action="#{manterFormaPgtoBean.excluirFormaPgto(formaPgto)}" ajax="false" update=":mainForm:tabelaDeFormaPgto"/>
+			</p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>

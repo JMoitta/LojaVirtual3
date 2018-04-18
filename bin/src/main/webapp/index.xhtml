@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	template="/WEB-INF/template/LayoutPadrao.xhtml">
+	<ui:define name="corpo">
+		<p:panel id="section-main" columns="1" styleClass="supermercado-main">
+			<f:facet name="header">
+				<div aling="center">
+					<h1>
+						<h:outputText value="SuperMercado Alto" />
+					</h1>
+				</div>
+			</f:facet>
+			<p:row>
+				<p:column>
+					<div
+						style="margin-left: 50%; transform: translate(-50%, 0); width: 383px;">
+						<p:button
+							outcome="/pages/produto/administrarProdutos?faces-redirect=true"
+							value="Administrar Produtos" />
+						<p:button
+							outcome="/pages/fone/administrarFones?faces-redirect=true"
+							value="Administrar Fones" />
+						<p:button
+							outcome="/pages/pessoa/administrarPessoas?faces-redirect=true"
+							value="Administrar Pessoas" />
+					</div>
+				</p:column>
+			</p:row>
+		</p:panel>
+	</ui:define>
+</ui:composition>

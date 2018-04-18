@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	template="/WEB-INF/template/LayoutPadrao.xhtml">
+	<ui:define name="corpo">
+		<div>
+			<h1 style="text-align: center;">
+				<h:outputText value="Pessoa" />
+			</h1>
+		</div>
+		<p:commandButton
+			style="padding:10px 30px;width: auto;min-width: 200px;"
+			value="Inserir" action="#{pessoaBean.actionInserir}" />
+		<p:dataTable id="dataTablePessoa" value="#{pessoaBean.listagem}"
+			var="pessoa">
+			<p:column headerText="Codigo">
+				<h:outputText value="#{pessoa.id}" />
+			</p:column>
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{pessoa.nome}" />
+			</p:column>
+
+			<p:column headerText="CPF">
+				<h:outputText value="#{pessoa.cpf}" />
+			</p:column>
+
+			<p:column headerText="Ações">
+				<h:panelGroup>
+					<p:commandButton value="Alterar"
+						action="/pages/pessoa/cadastroDePessoa?faces-redirect=true"
+						style="width:46%;min-width:100px;" styleClass="ui-btn-inline">
+						<f:setPropertyActionListener value="#{pessoa}"
+							target="#{pessoaBean.pessoa}" />
+					</p:commandButton>
+					<p:commandButton value="Excluir" update="dataTablePessoa"
+						style="width:46%;min-width:100px;" styleClass="ui-btn-inline"
+						action="#{pessoaBean.actionExcluir(pessoa)}">
+						<p:confirm header="Confirmação"
+							message="Deseja mesmo excluir o produto?" icon="ui-icon-alert" />
+					</p:commandButton>
+				</h:panelGroup>
+			</p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>

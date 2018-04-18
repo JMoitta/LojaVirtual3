@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	template="/WEB-INF/template/LayoutPadrao.xhtml">
+	<ui:define name="corpo">
+		<div>
+			<h1 style="text-align: center;">
+				<h:outputText value="Forma de Pagamento" />
+			</h1>
+		</div>
+		<p:commandButton
+			style="padding:10px 30px;width: auto;min-width: 200px;"
+			value="Inserir" action="#{formaPgtoBean.actionInserir}" />
+		<p:dataTable id="dataTableFormaPgto" value="#{formaPgtoBean.listagem}"
+			var="formaPgto">
+			<p:column headerText="Codigo">
+				<h:outputText value="#{formaPgto.id}" />
+			</p:column>
+
+			<p:column headerText="Descrição">
+				<h:outputText value="#{formaPgto.descricao}" />
+			</p:column>
+
+			<p:column headerText="Numero maximo de parcelas">
+				<h:outputText value="#{formaPgto.numMaxParc}" />
+			</p:column>
+
+			<p:column headerText="Ações">
+				<h:panelGroup>
+					<p:commandButton value="Alterar"
+						action="#{formaPgtoBean.actionAlterar(formaPgto)}"
+						style="width:46%;min-width:100px;" styleClass="ui-btn-inline">
+						<f:setPropertyActionListener value="#{formaPgto}"
+							target="#{formaPgtoBean.formaPgto}" />
+					</p:commandButton>
+					<p:commandButton value="Excluir" update="dataTableFormaPgto"
+						style="width:46%;min-width:100px;" styleClass="ui-btn-inline"
+						action="#{formaPgtoBean.actionExcluir(formaPgto)}">
+						<p:confirm header="Confirmação"
+							message="Deseja mesmo excluir a forma de pagamento?" icon="ui-icon-alert" />
+					</p:commandButton>
+				</h:panelGroup>
+			</p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>

@@ -4,61 +4,27 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile">
-
-<f:view renderKitId="PRIMEFACES_MOBILE" />
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<h:outputStylesheet name="grid/grid.css" library="primefaces" />
-	<title>Teste</title>
-	<!-- <h:outputScript name="/primefaces.js" library="primefaces" /> -->
-	<h:outputScript name="inputMask.js" library="js" />
-	<ui:insert name="head"></ui:insert>
+	<title><ui:insert name="tituloDaPagina">Loja Virtual</ui:insert></title>
+	<ui:insert name="conteudoDoHead"></ui:insert>
 </h:head>
 <h:body>
-	<h:form prependId="false" id="form-supermercado">
-		<pm:page>
-			<pm:header title="SuperMercado" fixed="true">
-				<p:commandButton id="menu" onclick="PF('pnl-basic').show()"
-					icon="fa-bars" value="MENU" type="button" />
-			</pm:header>
+	<h:form id="mainForm">
+		<h:commandLink action="/index">
+			<h:graphicImage height="130" value="/resources/images/magento_logo.png"
+				alt="Logo Loja Virtual" />
+		</h:commandLink>
+		<p:menubar>
+			<p:submenu label="Administração">
+				<p:menuitem value="Pessoa" outcome="/pages/pessoa/administrar" />
+				<p:menuitem value="Forma de Pagamento" outcome="/pages/formaPgto/administrar" />
+				
+			</p:submenu>
 
-			<pm:content>
-				<p:growl globalOnly="true" />
-				<ui:insert name="corpo">
-					oka
-				</ui:insert>
-			</pm:content>
-
-			<p:overlayPanel id="overlayPanel" widgetVar="pnl-basic" at="left"
-				showEffect="overlay">
-				<h2>Panel Content</h2>
-				<p:menu>
-					<p:menuitem value="Main" outcome="/index" />
-					<p:menuitem value="Produto"
-						outcome="/pages/produto/administrarProdutos" />
-					<p:menuitem value="Pessoa"
-						outcome="/pages/pessoa/administrarPessoas" />
-					<p:menuitem value="Fone" outcome="/pages/fone/administrarFones" />
-				</p:menu>
-			</p:overlayPanel>
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
-				width="600px">
-				<div class="ui-grid-row">
-					<div class="ui-grid-col-6">
-						<p:commandButton value="Sim" type="button"
-							styleClass="ui-confirmdialog-yes ui-btn-inline"
-							icon="ui-icon-check" />
-					</div>
-					<div class="ui-grid-col-6">
-						<p:commandButton value="Não" type="button"
-							styleClass="ui-confirmdialog-no ui-btn-inline"
-							icon="ui-icon-close" />
-					</div>
-				</div>
-			</p:confirmDialog>
-		</pm:page>
+		</p:menubar>
+	<ui:insert name="corpoDaPagina"></ui:insert>
 	</h:form>
 </h:body>
 </html>
