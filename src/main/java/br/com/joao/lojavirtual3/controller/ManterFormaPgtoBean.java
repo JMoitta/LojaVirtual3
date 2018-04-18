@@ -54,7 +54,7 @@ public class ManterFormaPgtoBean implements Serializable {
 	public void mostrarMensagemSucesso() {
 		this.carregarListaFormaPgto();
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso!", "A formaPgto foi salva com sucesso!"));
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso!", "A forma de pagamento foi salva com sucesso!"));
 	}
 
 	public void salvarFormaPgto() {
@@ -79,14 +79,14 @@ public class ManterFormaPgtoBean implements Serializable {
 			formaPgtos = null;
 		}
 	}
-
+	
 	public void excluirFormaPgto(FormaPgto objeto) {
 		try {
 			formaPgtoService.deletarPassandoFormaPgto(objeto);
 			carregarListaFormaPgto();
 			FacesContext.getCurrentInstance().addMessage(
 	        		null,
-	        		new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso!", "A formaPgto foi excluida!"));
+	        		new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso!", "A forma de pagamento foi excluida!"));
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(
 	        		null,
