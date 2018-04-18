@@ -15,7 +15,7 @@ public class FormaPgto implements Serializable, PrimaryKeyTest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "fpg_id")
-	private int id;
+	private long id;
 
 	@Column(name = "fpg_descricao", length = 20, nullable = true)
 	private String descricao;
@@ -32,11 +32,11 @@ public class FormaPgto implements Serializable, PrimaryKeyTest {
 	@Column(name = "fpg_percentual_acres", nullable = true)
 	private float percentualAcres;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -80,11 +80,12 @@ public class FormaPgto implements Serializable, PrimaryKeyTest {
 		this.percentualAcres = percentualAcres;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
