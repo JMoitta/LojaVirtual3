@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/LayoutPadrao.xhtml">
+	<ui:define name="tituloDaPagina">Administrar Produto</ui:define>
+	<ui:define name="corpoDaPagina">
+		<p:growl id="growl" showDetail="true" autoUpdate="true" life="3000"/>  
+		<center>
+			<h1>Produto</h1>
+		</center>
+		<p:commandButton value="Nova Produto" icon="ui-icon-document"
+			action="#{manterProdutoBean.abrirModalDeProduto(null)}">
+			<p:ajax
+                    event="dialogReturn"
+                    update=":mainForm:tabelaDeProduto"
+                    listener="#{manterProdutoBean.mostrarMensagemSucesso}" />
+		</p:commandButton>
+		<p:dataTable id="tabelaDeProduto" value="#{manterProdutoBean.produtos}" var="produto" style="margin: 10px 0;" reflow="true"
+			styleClass="ui-corner-all">
+			<p:column headerText="Nome">
+				<h:outputText value="#{produto.nome}" />
+			</p:column>
+			<p:column headerText="Preço">
+				<h:outputText value="#{produto.preco}" />
+			</p:column>
+			<p:column headerText="Ações">
+				<p:commandButton 
+					value="Alterar"
+					process="@this"
+					action="#{manterProdutoBean.abrirModalDeProduto(produto)}">
+					<p:ajax
+	                     event="dialogReturn"
+	                     update=":mainForm:tabelaDeProduto"
+	                     listener="#{manterProdutoBean.mostrarMensagemSucesso}" />
+				</p:commandButton>
+				<p:commandButton value="Excluir" action="#{manterProdutoBean.excluirProduto(produto)}" ajax="false" update=":mainForm:tabelaDeProduto"/>
+			</p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>
