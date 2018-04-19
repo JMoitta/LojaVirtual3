@@ -16,7 +16,7 @@ public class FoneDAO extends DAOAbstract<Fone> implements Serializable{
 		StringBuilder condicao = new StringBuilder();
 		Map<String, Object> paramentros = new HashMap<>();
 
-		condicao.append("SELECT f FROM Fone f WHERE f.id = :id");
+		condicao.append("SELECT t FROM Fone t WHERE t.id = :id");
 		paramentros.put("id", foneId);
 		
 		return buscarPor(condicao.toString(), paramentros);
