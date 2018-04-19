@@ -4,16 +4,18 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import br.com.joao.lojavirtual3.util.jpa.PrimaryKeyTest;
+
 @Entity 
 @Table(name = "produto")
-public class Produto implements Serializable{
+public class Produto implements PrimaryKeyTest, Serializable{
 
 	private static final long serialVersionUID = -8023482526632579452L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pro_id")
-	private int id;
+	private long id;
 
 	@Column(name = "pro_nome", length = 60, nullable = false)
 	private String nome;
@@ -21,11 +23,11 @@ public class Produto implements Serializable{
 	@Column(name = "pro_preco", length = 9, precision = 2, nullable = false)
 	private float preco;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -49,8 +51,7 @@ public class Produto implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
-		result = prime * result + Float.floatToIntBits(preco);
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -65,9 +66,12 @@ public class Produto implements Serializable{
 		Produto other = (Produto) obj;
 		if (id != other.id)
 			return false;
-		if (Float.floatToIntBits(preco) != Float.floatToIntBits(other.preco))
-			return false;
 		return true;
+	}
+
+	@Override
+	public boolean temChavePrimaria() {
+		return getId() > 0;
 	}
 
 }
