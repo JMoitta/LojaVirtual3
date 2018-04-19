@@ -15,7 +15,7 @@ public class PessoaDAO extends DAOAbstract<Pessoa> implements Serializable{
 		StringBuilder condicao = new StringBuilder();
 		Map<String, Object> paramentros = new HashMap<>();
 
-		condicao.append("SELECT c FROM Pessoa c WHERE c.id = :id");
+		condicao.append("SELECT t FROM Pessoa t WHERE t.id = :id");
 		paramentros.put("id", contaId);
 		
 		return buscarPor(condicao.toString(), paramentros);
