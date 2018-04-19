@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/LayoutModal.xhtml">
+	<ui:define name="tituloDaPagina">Produto</ui:define>
+	<ui:define name="tituloDaModal"><h1 style="text-align: center;"><h:outputText value="#{manterProdutoBean.produto.id > 0 ? 'Editar' : 'Nova' }"/> Produto</h1></ui:define>
+	<ui:define name="corpoDaPagina">
+		<h:form id="form-produto">
+		<f:metadata>
+			<f:viewParam name="produtoId" value="#{manterProdutoBean.produto}" converter="ProdutoConverter"/>
+		</f:metadata>
+		<p:growl id="messages" showDetail="false" closable="false" autoUpdate="true">
+    	</p:growl>
+
+				<!-- <p:outputLabel value="Codígo"  style="text-align: center;" styleClass="ui-grid-col-2"/>
+				<p:inputText value="#{manterProdutoBean.produto.id}" readonly="true" disabled="true" styleClass="ui-grid-col-2"/> -->
+			<p:fieldset legend="Dados Produtos" style="margin-top:20px">			
+				<p:panelGrid columns="4" cellpadding="5" layout="grid">
+					<p:outputLabel value="Nome" style="text-align: center;" />
+					<p:inputText value="#{manterProdutoBean.produto.nome}" required="true" requiredMessage="Informe o Nome">
+					</p:inputText>
+					
+					<p:outputLabel value="Preço" style="text-align: center;" />
+					<p:inputText value="#{manterProdutoBean.produto.preco}" required="true" requiredMessage="Informe um RG." >
+					</p:inputText>
+				</p:panelGrid>
+			</p:fieldset>	
+				
+			<p:toolbar style="margin-top:105px">
+				<f:facet name="right">
+					<p:commandButton value="Limpar" icon="ui-icon-close"/>
+					<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{manterProdutoBean.salvarProduto}"/>
+				</f:facet>
+			</p:toolbar>
+		</h:form>
+	</ui:define>
+</ui:composition>
