@@ -15,7 +15,7 @@ public class Fone implements Serializable, PrimaryKeyTest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "fon_id")
-	private int id;
+	private long id;
 
 	@Column(name = "fon_numero", length = 20, nullable = false)
 	private String numero;
@@ -30,11 +30,11 @@ public class Fone implements Serializable, PrimaryKeyTest {
 	@Transient
 	private int pessoaId;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -74,7 +74,7 @@ public class Fone implements Serializable, PrimaryKeyTest {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
