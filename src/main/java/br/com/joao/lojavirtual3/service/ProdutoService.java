@@ -1,12 +1,17 @@
 package br.com.joao.lojavirtual3.service;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+
+import org.primefaces.model.chart.ChartSeries;
 
 import br.com.joao.lojavirtual3.dao.ProdutoDAO;
 import br.com.joao.lojavirtual3.model.Produto;
+import br.com.joao.lojavirtual3.util.service.ServiceAbstract;
+import br.gov.go.agr.ouvidoria.controller.RelatorioGraficoServiceTemplate;
 
-public class ProdutoService implements Serializable {
+public class ProdutoService  extends ServiceAbstract implements Serializable {
 
 	private static final long serialVersionUID = -8316801243607929061L;
 
@@ -47,5 +52,9 @@ public class ProdutoService implements Serializable {
 
 	public ProdutoDAO getProdutoDAO() {
 		return produtoDAO;
+	}
+
+	public int contarDiferencaEntreAsDatas(Date dataInicial, Date dataFinal) {
+		
 	}
 }

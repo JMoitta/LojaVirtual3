@@ -1,10 +1,12 @@
 package br.com.joao.lojavirtual3.dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.joao.lojavirtual3.model.Pessoa;
+import org.primefaces.model.chart.ChartSeries;
+
 import br.com.joao.lojavirtual3.model.Produto;
 import br.com.joao.lojavirtual3.util.jpa.DAOAbstract;
 
@@ -20,5 +22,10 @@ public class ProdutoDAO extends DAOAbstract<Produto> implements Serializable{
 		paramentros.put("id", contaId);
 		
 		return buscarPor(condicao.toString(), paramentros);
+	}
+
+	public ChartSeries buscarDadosParaGraficoProdutoPorMes(Date dataInicial, Date dataFinal) {
+		dataInicial = vibializaDataInicio(dataInicial);
+		dataFinal = vibializaDataFim(dataFinal);
 	}
 }
