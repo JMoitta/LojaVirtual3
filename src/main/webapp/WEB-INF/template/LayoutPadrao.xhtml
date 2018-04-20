@@ -11,21 +11,31 @@
 	<ui:insert name="conteudoDoHead"></ui:insert>
 </h:head>
 <h:body>
+
 	<h:form id="mainForm">
+	
 		<h:commandLink action="/index">
+		
 			<h:graphicImage height="130" value="/resources/images/magento_logo.png"
 				alt="Logo Loja Virtual" />
 		</h:commandLink>
+		
 		<p:menubar>
+		
 			<p:submenu label="Administração">
+			
 				<p:menuitem value="Pessoa" outcome="/pages/pessoa/administrar" />
 				<p:menuitem value="Forma de Pagamento" outcome="/pages/formaPgto/administrar" />
 				<p:menuitem value="Produto" outcome="/pages/produto/administrar" />
-				
 			</p:submenu>
-
+			
+			<p:submenu label="Gráfico">
+			
+				<p:menuitem value="Produto por mês" outcome="/pages/grafico/produtoPorMes" />
+			</p:submenu>
 		</p:menubar>
-	<ui:insert name="corpoDaPagina"></ui:insert>
+		
+		<ui:insert name="corpoDaPagina"></ui:insert>
 	</h:form>
 </h:body>
 </html>

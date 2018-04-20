@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/LayoutPadrao.xhtml">
+	<ui:define name="tituloDaPagina">Administrar Pessoa</ui:define>
+	<ui:define name="corpoDaPagina">
+		<p:growl id="growl" showDetail="true" autoUpdate="true" life="3000"/>  
+		<center>
+			<h1>Produto por mês</h1>
+		</center>
+		
+		<p:panelGrid columns="1" style="width: 100%;">
+			<f:facet name="header">
+				<div align="center">
+					<h:panelGrid columns="5">
+						<h:outputText value="De:"/>
+						<p:calendar placeholder="Data Inicial" value="#{graficoProdutoPorMesBean.dataInicial}"/>
+						<h:outputText value="Até:"/>
+						<p:calendar placeholder="Data Final" value="#{graficoProdutoPorMesBean.dataFinal}"/>
+						<p:commandButton value="Buscar" icon="ui-icon-search"/>
+					</h:panelGrid>
+				</div>
+			</f:facet>
+			<p:chart type="bar" model="#{graficoProdutoPorMesBean.barModel}"/>
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>
