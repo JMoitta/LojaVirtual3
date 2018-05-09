@@ -33,9 +33,17 @@
 			
 				<p:menuitem value="Produto por mês" outcome="/pages/grafico/produtoPorMes" />
 			</p:submenu>
+			
+			<p:submenu style="float:right;" >
+			
+				<p:menuitem value="Sair" icon="ui-icon-extlink"  />
+			</p:submenu>
+			<f:facet name="options">
+				<p:outputLabel styleClass="ui-menubar ui-menuitem-link" value="#{seguranca.usuario.nome}"/>
+			</f:facet>
 		</p:menubar>
-		
-		<ui:insert name="corpoDaPagina"></ui:insert>
 	</h:form>
+	<ui:insert name="corpoDaPagina"></ui:insert>
+	
 </h:body>
 </html>
