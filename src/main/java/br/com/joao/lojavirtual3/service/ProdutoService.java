@@ -4,12 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import org.primefaces.model.chart.ChartSeries;
-
 import br.com.joao.lojavirtual3.dao.ProdutoDAO;
+import br.com.joao.lojavirtual3.exception.NegocioException;
 import br.com.joao.lojavirtual3.model.Produto;
 import br.com.joao.lojavirtual3.util.service.ServiceAbstract;
-import br.gov.go.agr.ouvidoria.controller.RelatorioGraficoServiceTemplate;
 
 public class ProdutoService  extends ServiceAbstract implements Serializable {
 
@@ -54,7 +52,10 @@ public class ProdutoService  extends ServiceAbstract implements Serializable {
 		return produtoDAO;
 	}
 
-	public int contarDiferencaEntreAsDatas(Date dataInicial, Date dataFinal) {
+	public int contarDiferencaEntreAsDatas(Date dataInicial, Date dataFinal) throws NegocioException {
+		super.vibializaDataInicial(dataInicial);
+		super.vibializaDataFinal(dataInicial, dataFinal);
 		
+		return 0;
 	}
 }
