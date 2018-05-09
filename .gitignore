@@ -45,6 +45,8 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 
+# Faces-Config
+.metadata/
 
 # OS
 .DS_Store
