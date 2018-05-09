@@ -1,7 +1,5 @@
 package br.com.joao.lojavirtual3.exception;
 
-import java.util.List;
-
 import javax.faces.application.FacesMessage.Severity;
 
 public class NegocioException extends Exception {
