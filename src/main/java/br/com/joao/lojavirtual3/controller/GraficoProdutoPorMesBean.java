@@ -1,15 +1,15 @@
 package br.com.joao.lojavirtual3.controller;
 
 import java.util.Date;
-import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.PieChartModel;
 
+import br.com.joao.lojavirtual3.exception.NegocioException;
 import br.com.joao.lojavirtual3.service.ProdutoService;
 
 @ManagedBean
@@ -31,13 +31,13 @@ public class GraficoProdutoPorMesBean {
 	}
 
 	public void buscarGraficoProdutoPorMes() {
-		
-		;
-		this.barModel.addSeries(produtoService.buscarDadosParaGraficoProdutoPorMes(
-				produtoService.contarDiferencaEntreAsDatas(dataInicial, dataFinal),
-				dataInicial, dataFinal));
-
-		this.barModel.setTitle("produto por mês");
+		try {
+			this.produtoService.contarDiferencaEntreAsDatas(this.dataInicial, this.dataFinal);
+		} catch (NegocioException e) {
+			FacesContext.getCurrentInstance().addMessage(
+	        		null,
+	        		new FacesMessage(e.getSeverity(), e.getSummary(), e.getMessage()));
+		}
 	}
 	private void carregarBarModel() {
 		this.barModel = new BarChartModel();
