@@ -23,7 +23,10 @@ public class PessoaService implements Serializable {
 
 	public void salvarPassandoPessoa(Pessoa pessoa) throws Exception {
 		try {
+			if(pessoa.getId() == 0)
 				getPessoaDAO().merge(pessoa);
+			else
+				getPessoaDAO().update(pessoa);
  		} catch (Exception e) {
 			throw new Exception(e);
 		}
@@ -47,5 +50,9 @@ public class PessoaService implements Serializable {
 
 	public PessoaDAO getPessoaDAO() {
 		return pessoaDAO;
+	}
+
+	public Pessoa buscarPessoaPorEmail(String email) throws Exception {
+		return pessoaDAO.buscarPessoaPorEmail(email);
 	}
 }
