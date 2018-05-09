@@ -21,7 +21,7 @@ import br.com.joao.lojavirtual3.service.FormaPgtoService;
 public class ManterFormaPgtoBean implements Serializable {
 
 	private static final long serialVersionUID = -5327540983341723093L;
-
+	
 	private FormaPgtoService formaPgtoService = new FormaPgtoService();
 	
 	private FormaPgto formaPgto = new FormaPgto();
