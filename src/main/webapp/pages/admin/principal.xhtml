@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/LayoutPadrao.xhtml">
+	<ui:define name="tituloDaPagina">Área Administrativa</ui:define>
+	<ui:define name="corpoDaPagina">
+		<h1><h:outputText value="Área Administrativa" /> </h1>
+		<h:form>
+			<h:outputText value="#{seguranca.usuario.nome}"/>
+			<ul>
+				<li><h:commandButton value="Produto" action="/pages/produto/administrar"/> </li>
+				<li><h:commandButton value="Cliente" action="/pages/pessoa/administrar"/> </li>
+				<li>
+					<h:outputLink
+						value="#{request.contextPath}/j_spring_security_logout">
+						Logout	
+					</h:outputLink>
+				</li>
+			</ul>
+		</h:form>
+	</ui:define>
+</ui:composition>
