@@ -24,8 +24,4 @@ public class ProdutoDAO extends DAOAbstract<Produto> implements Serializable{
 		return buscarPor(condicao.toString(), paramentros);
 	}
 
-	public ChartSeries buscarDadosParaGraficoProdutoPorMes(Date dataInicial, Date dataFinal) {
-		dataInicial = vibializaDataInicio(dataInicial);
-		dataFinal = vibializaDataFim(dataFinal);
-	}
 }
