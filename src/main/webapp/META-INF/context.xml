@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context reloadable="true">
+<context reloadable="true">
 	<Resource 	name="jdbc/hibernatedb" 
 			auth="Container" 
 			type="javax.sql.DataSource"
@@ -10,4 +10,4 @@
 			password="admin" 
 			driverClassName="org.postgresql.Driver"
 			url="jdbc:postgresql://localhost:5432/BDLojaVirtual?autoReconnect=true"/>
-</Context>
+</context>
