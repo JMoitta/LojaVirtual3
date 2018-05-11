@@ -36,10 +36,18 @@
 			
 			<p:submenu style="float:right;" >
 			
-				<p:menuitem value="Sair" icon="ui-icon-extlink"  />
+				<p:menuitem value="Configurações" icon="ui-icon-gear"  />
 			</p:submenu>
 			<f:facet name="options">
+				<h:commandLink value="Entrar" styleClass="ui-menubar ui-menuitem-link"
+					rendered="#{seguranca.usuario eq null}"
+					action="/login?faces-redirect=true"/>
 				<p:outputLabel styleClass="ui-menubar ui-menuitem-link" value="#{seguranca.usuario.nome}"/>
+				<h:outputLink styleClass="ui-menubar ui-menuitem-link"
+					rendered="#{seguranca.usuario != null}"
+					value="#{request.contextPath}/j_spring_security_logout">
+					Sair
+				</h:outputLink>
 			</f:facet>
 		</p:menubar>
 	</h:form>
