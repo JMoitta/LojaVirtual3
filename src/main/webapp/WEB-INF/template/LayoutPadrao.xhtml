@@ -34,9 +34,14 @@
 				<p:menuitem value="Produto por mês" outcome="/pages/grafico/produtoPorMes" />
 			</p:submenu>
 			
-			<p:submenu style="float:right;" >
+			<p:submenu label="Opções" style="float:right;" >
 			
 				<p:menuitem value="Configurações" icon="ui-icon-gear"  />
+			</p:submenu>
+			
+			<p:submenu icon="ui-icon-cart" label="(12)" style="float:right;" >
+				<p:menuitem value="Total de itens (12)" icon="ui-icon-plusthick"  />
+				<p:menuitem value="Total:R$ 21,00" icon="ui-icon-cart" disabled="true"/>
 			</p:submenu>
 			<f:facet name="options">
 				<h:commandLink value="Entrar" styleClass="ui-menubar ui-menuitem-link"
