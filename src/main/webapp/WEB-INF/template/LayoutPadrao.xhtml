@@ -40,8 +40,9 @@
 			</p:submenu>
 			
 			<p:submenu icon="ui-icon-cart" label="(12)" style="float:right;" >
-				<p:menuitem value="Total de itens (12)" icon="ui-icon-plusthick"  />
-				<p:menuitem value="Total:R$ 21,00" icon="ui-icon-cart" disabled="true"/>
+				<p:menuitem value="Total de itens (12)" icon="ui-icon-plusthick"
+					outcome="/carrinho?faces-redirect=true"  />
+				<p:menuitem value="Total: R$ 21,00" icon="ui-icon-cart" disabled="true"/>
 			</p:submenu>
 			<f:facet name="options">
 				<h:commandLink value="Entrar" styleClass="ui-menubar ui-menuitem-link"
