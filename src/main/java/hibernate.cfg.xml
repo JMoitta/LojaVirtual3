@@ -35,5 +35,7 @@
 		<mapping class="br.com.joao.lojavirtual3.model.Fone" />
 		<mapping class="br.com.joao.lojavirtual3.model.Pessoa" />
 		<mapping class="br.com.joao.lojavirtual3.model.FormaPgto" />
+		<mapping class="br.com.joao.lojavirtual3.model.Pedido" />
+		<mapping class="br.com.joao.lojavirtual3.model.ItensPedido" />
 	</session-factory>
 </hibernate-configuration>

@@ -15,14 +15,14 @@ import br.com.joao.lojavirtual3.service.PessoaService;
 public class Seguranca {
 
 	PessoaService pessoaService = new PessoaService();
+	private Pessoa pessoa = null;
 	
 	public Pessoa getUsuario() {
-		Pessoa pessoa = null;
 		
 		UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) FacesContext
 				.getCurrentInstance().getExternalContext().getUserPrincipal();
 		
-		if (auth != null) {
+		if (auth != null && this.pessoa == null) {
 			User user = (User) auth.getPrincipal();
 			try {
 				pessoa = pessoaService.buscarPessoaPorEmail(user.getUsername());
@@ -32,6 +32,6 @@ public class Seguranca {
 			}
 		}
 		
-		return pessoa;
+		return this.pessoa;
 	}
 }
