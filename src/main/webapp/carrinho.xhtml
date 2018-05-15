@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/LayoutPadrao.xhtml">
+	<ui:define name="corpoDaPagina">
+		<h:form id="formProduto">
+			<p:growl id="growl" showDetail="true" autoUpdate="true" life="3000" />
+			<center>
+				<h1>Meu carrinho</h1>
+			</center>
+			<p:dataTable id="tabelaDeProduto"
+				value="#{manterProdutoBean.produtos}" var="produto"
+				style="margin: 10px 0;" reflow="true" styleClass="ui-corner-all">
+				<p:column headerText="Produto">
+					<h:outputText value="#{produto.nome}" />
+				</p:column>
+				<p:column headerText="Quantidade" style="text-align: center">
+					<h:outputText value="#{produto.preco}" />
+					<h:commandLink style="display:block;color: #2399e5;" value="Retirar do carrinho"/>
+				</p:column>
+				<p:column headerText="Valor Unitário" style="text-align: center">
+					<h:outputText value="#{produto.preco}" />
+				</p:column>
+				<p:column headerText="Valor Total" style="text-align: center">
+					<h:outputText value="#{produto.preco}" />
+				</p:column>
+			</p:dataTable>
+
+			<div class="ui-grid">
+				<div class="ui-grid-col-6">
+					<p:panelGrid style="width: 380px;">
+						<f:facet name="header">
+							<p:row>
+								<p:column colspan="3">
+									 Todos os produtos
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									 Qtd
+								</p:column>
+								<p:column>
+									 Produto
+								</p:column>
+								<p:column>
+									 Valor
+								</p:column>
+							</p:row>
+						</f:facet>
+						<p:row>
+							<p:column>
+								<h:outputText value="4" style="text-al" />
+							</p:column>
+							<p:column>
+								<h:outputText value="produto" />
+							</p:column>
+							<p:column>
+								<h:outputText value="R$	4.969,96" />
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column colspan="2" styleClass="ui-widget-header">
+								<h:outputText value="Total" />
+							</p:column>
+							<p:column styleClass="ui-widget-header">
+								<h:outputText value="R$	4.969,96" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</div>
+				<div class="ui-grid-col-6">
+					<p:commandButton style="float:right;padding:7px 16px;" value="Comprar" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
