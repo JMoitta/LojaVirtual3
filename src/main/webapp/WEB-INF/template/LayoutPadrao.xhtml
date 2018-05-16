@@ -9,9 +9,18 @@
 <h:head>
 	<title><ui:insert name="tituloDaPagina">Loja Virtual</ui:insert></title>
 	<ui:insert name="conteudoDoHead"></ui:insert>
+	<h:outputStylesheet>
+		.jm-form-label {
+			width: 100px;
+			text-align: right;
+		}
+		.jm-form-input {
+			width: 250px;
+	s	}
+	</h:outputStylesheet>
 </h:head>
 <h:body>
-
+	
 	<h:form id="mainForm">
 	
 		<h:commandLink action="/index?faces-redirect=true">
@@ -20,7 +29,7 @@
 				alt="Logo Loja Virtual" />
 		</h:commandLink>
 		
-		<p:menubar>
+		<p:menubar id="menuHeader">
 		
 			<p:submenu label="Administração">
 			
@@ -39,8 +48,8 @@
 				<p:menuitem value="Configurações" icon="ui-icon-gear"  />
 			</p:submenu>
 			
-			<p:submenu icon="ui-icon-cart" label="(12)" style="float:right;" >
-				<p:menuitem value="Total de itens (12)" icon="ui-icon-plusthick"
+			<p:submenu id="carrinho" icon="ui-icon-cart" label="(#{carrinhoDeComprasBean.totalDeProdutos()})" style="float:right;" >
+				<p:menuitem value="Total de itens (#{carrinhoDeComprasBean.totalDeProdutos()})" icon="ui-icon-plusthick"
 					outcome="/carrinho?faces-redirect=true"  />
 				<p:menuitem value="Total: R$ 21,00" icon="ui-icon-cart" disabled="true"/>
 			</p:submenu>
@@ -56,6 +65,7 @@
 				</h:outputLink>
 			</f:facet>
 		</p:menubar>
+		<p:remoteCommand name="totalDeProdutos" update="mainForm:menuHeader"/>
 	</h:form>
 	<ui:insert name="corpoDaPagina"></ui:insert>
 	

@@ -22,12 +22,10 @@
 					<p:commandButton 
 						value="Adicionar ao Carinho"
 						process="@this"
-						disabled="true"
-						action="#{manterProdutoBean.abrirModalDeProduto(produto)}">
-						<p:ajax
-		                     event="dialogReturn"
-		                     update=":formProduto:tabelaDeProduto"
-		                     listener="#{manterProdutoBean.mostrarMensagemSucesso}" />
+						disabled=""
+						oncomplete="totalDeProdutos();"
+						action="#{carrinhoDeComprasBean.adicionarProduto(produto)}">
+						
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>

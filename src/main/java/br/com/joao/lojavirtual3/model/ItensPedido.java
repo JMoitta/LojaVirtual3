@@ -28,8 +28,8 @@ public class ItensPedido implements Serializable, PrimaryKeyTest {
 	private long id;
 
 	@ManyToOne
-	@JoinColumn(name = "pes_id")
-	private Pessoa pessoa;
+	@JoinColumn(name = "ped_id")
+	private Pedido pedido;
 
 	@ManyToOne
 	@JoinColumn(name = "pro_id")
@@ -52,12 +52,12 @@ public class ItensPedido implements Serializable, PrimaryKeyTest {
 		this.id = id;
 	}
 
-	public Pessoa getPessoa() {
-		return pessoa;
+	public Pedido getPedido() {
+		return pedido;
 	}
 
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
 	public Produto getProduto() {

@@ -8,18 +8,22 @@
 		<p:tabView>
 	        <p:tab title="Entrar">
 	            <h:panelGroup rendered="#{!empty param.login_error}">
-			Error ao efetuar o login.<br/>
-			Motivo: #{SPRING_SECURITY_LAST_EXCEPTION.message}
-		</h:panelGroup>
+				Error ao efetuar o login.<br/>
+				Motivo: #{SPRING_SECURITY_LAST_EXCEPTION.message}
+				</h:panelGroup>
 				<form id="login" method="post" action="#{request.contextPath}/j_spring_security_check">
 					<table>
 						<tr>
-							<td>Login</td>
-							<td><input type="text" name="j_username"/></td>
+							<td width="100" align="right">Login</td>
+							<td><input class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" 
+									style="width: 250px;"
+									type="text" name="j_username"/></td>
 						</tr>
 						<tr>
-							<td>Senha</td>
-							<td><input type="password" name="j_password"/></td>
+							<td align="right">Senha</td>
+							<td><input class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" 
+									style="width: 250px;"
+									type="password" name="j_password"/></td>
 						</tr>
 						<tr>
 							<td align="right"><input type="checkbox" name="_spring_security_remember_me"/></td>
@@ -27,7 +31,9 @@
 						</tr>
 						<tr>
 							<td></td>
-							<td><input type="submit" value="Logar"/></td>
+							<td><input class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
+									style="padding: 5px 20px"
+									type="submit" value="Logar"/></td>
 						</tr>
 					</table>
 					<script>
@@ -35,13 +41,72 @@
 					</script>
 				</form>
 	        </p:tab>
-	        <p:tab title="Cadastrar">
-	            <h:panelGrid columns="2" cellpadding="10">
-	                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
-	                <h:outputText value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. 
-	                In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy, 
-	                killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows." />
-	            </h:panelGrid>
+	        <p:tab title="Cadastrar">	
+	        	<h:form>
+	        		<p:fieldset legend="Credencias" style="margin-top:20px">
+	        			<h:panelGrid columns="2" cellpadding="5" columnClasses="jm-form-label, jm-form-input">
+			        		<p:outputLabel value="E-mail" style="text-align: center;" />
+							<p:inputText value="#{manterPessoaBean.pessoa.email}" ><!--  required="true" requiredMessage="Informe um e-mail."  -->
+							</p:inputText>
+			
+							<p:outputLabel value="Senha" style="text-align: center;" />
+							<p:inputText value="#{manterPessoaBean.pessoa.senha}" ><!-- required="true" requiredMessage="Informe um senha."  -->
+							</p:inputText>
+							
+						</h:panelGrid>
+	        		</p:fieldset>
+					
+	        		<p:fieldset legend="Dados Pessoas" style="margin-top:20px">			
+						<h:panelGrid columns="2" cellpadding="5" columnClasses="jm-form-label, jm-form-input">
+							<p:outputLabel value="Nome" style="text-align: center;" />
+							<p:inputText value="#{manterPessoaBean.pessoa.nome}" required="true" requiredMessage="Informe o Nome">
+							</p:inputText>
+					
+							<p:outputLabel value="CPF" style="text-align: center;" />
+							<p:inputMask value="#{manterPessoaBean.pessoa.cpf}" mask="999.999.999-99" required="true" requiredMessage="Informe um CPF." >
+							</p:inputMask>
+					
+							<p:outputLabel value="RG" style="text-align: center;" />
+							<p:inputText value="#{manterPessoaBean.pessoa.rg}" required="true" requiredMessage="Informe um RG." >
+							</p:inputText>
+					
+							<p:outputLabel value="Data de nascimento" />
+							<p:calendar value="#{manterPessoaBean.pessoa.dataNasc}" navigator="true" pattern="dd/MM/yyyy"
+								required="true" requiredMessage="Informe um data de nascimento.">
+							</p:calendar>
+					
+						</h:panelGrid>
+					</p:fieldset>
+					
+					<p:fieldset legend="Endereço" style="margin-top:20px">			
+						<h:panelGrid columns="2" cellpadding="5" columnClasses="jm-form-label, jm-form-input">
+							<p:outputLabel value="Rua" />
+							<p:inputText value="#{manterPessoaBean.pessoa.rua}" ><!-- required="true" requiredMessage="Informe um rua."  -->
+							</p:inputText>
+					
+							<p:outputLabel value="Bairro" />
+							<p:inputText value="#{manterPessoaBean.pessoa.bairro}" ><!--  required="true" requiredMessage="Informe um bairro" -->
+							</p:inputText>
+					
+							<p:outputLabel value="Cidade" />
+							<p:inputText value="#{manterPessoaBean.pessoa.cidade}" ><!--  required="true" requiredMessage="Informe um cidade."  -->
+							</p:inputText>
+	
+							<p:outputLabel value="UF" style="text-align: center;" />
+							<p:inputText value="#{manterPessoaBean.pessoa.uf}" ><!--  required="true" requiredMessage="Informe um uf."  -->
+							</p:inputText>
+					
+							<p:outputLabel value="CEP" style="text-align: center;" />
+							<p:inputText value="#{manterPessoaBean.pessoa.cep}" ><!--  required="true" requiredMessage="Informe um cep."  -->
+							</p:inputText>
+						</h:panelGrid>
+					</p:fieldset>
+					<p:toolbar style="margin-top:20px">
+						<f:facet name="right">
+							<p:commandButton value="Cadastrar" icon="ui-icon-disk" action="#{manterPessoaBean.salvarPessoa}"/>
+						</f:facet>
+					</p:toolbar>
+	        	</h:form>
 	        </p:tab>
 	    </p:tabView>
 	</ui:define>

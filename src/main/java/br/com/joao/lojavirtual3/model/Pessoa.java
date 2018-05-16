@@ -65,7 +65,7 @@ public class Pessoa implements Serializable, PrimaryKeyTest{
 	private String senha;
 
 	@Column(name = "pes_tipo", length = 30)
-	private String tipo;
+	private String tipo;// Administrador, cliente, funcionario
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pessoa", cascade = CascadeType.ALL)
 	private List<Fone> fones = new ArrayList<>();
@@ -101,6 +101,7 @@ public class Pessoa implements Serializable, PrimaryKeyTest{
 	}
 
 	public String getNome() {
+		String consulta = "SELECT pessoa FROM Pessoa pessoa WHERE pessoa.tipo = 'Administrador' AND pessoa.pedidos.id IN ";
 		return nome;
 	}
 
