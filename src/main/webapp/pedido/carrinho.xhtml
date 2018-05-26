@@ -11,70 +11,52 @@
 				<h1>Meu carrinho</h1>
 			</center>
 			<p:dataTable id="tabelaDeProduto"
-				value="#{manterProdutoBean.produtos}" var="produto"
+				value="#{carrinhoDeComprasBean.pedido.itensPedidos}" var="itensPedido"
 				style="margin: 10px 0;" reflow="true" styleClass="ui-corner-all">
 				<p:column headerText="Produto">
-					<h:outputText value="#{produto.nome}" />
+					<center>
+						<h:outputText value="#{itensPedido.produto.nome}" />
+					</center>
 				</p:column>
 				<p:column headerText="Quantidade" style="text-align: center">
-					<h:outputText value="#{produto.preco}" />
-					<h:commandLink style="display:block;color: #2399e5;" value="Retirar do carrinho"/>
+					<p:selectOneMenu value="#{itensPedido.qtd}">
+						<p:ajax event="change" 
+							listener="#{carrinhoDeComprasBean.calcularValorTotal(itensPedido)}"
+							oncomplete="atualizarCarrinho();remoteCommandUpdateMenuHeader();"
+							/>
+						<f:selectItems
+							value="#{carrinhoDeComprasBean.qtdMaxPorProduto}"
+							var="qtdMaxProduto"
+							itemLabel="#{qtdMaxProduto}"
+							itemValue="#{qtdMaxProduto}"/>
+					</p:selectOneMenu>
+					<p:commandLink style="display:block;color: #2399e5;"
+						value="Retirar do carrinho"
+						action="#{carrinhoDeComprasBean.removerProdutoDoCarrinho(itensPedido.produto)}"
+						oncomplete="remoteCommandUpdateMenuHeader();atualizarCarrinho();remoteCommandMensagemRetirarDoCarrinho();"
+						/>
 				</p:column>
 				<p:column headerText="Valor Unitário" style="text-align: center">
-					<h:outputText value="#{produto.preco}" />
+					<h:outputText value="#{itensPedido.valorUnit}" />
 				</p:column>
 				<p:column headerText="Valor Total" style="text-align: center">
-					<h:outputText value="#{produto.preco}" />
+					<h:outputText value="#{itensPedido.subtotal}" />
 				</p:column>
+				<f:facet name="footer">
+						<p:row>
+							<h:outputLabel value="Total R$ #{carrinhoDeComprasBean.pedido.total}"/>
+						</p:row>
+				</f:facet>
 			</p:dataTable>
 
 			<div class="ui-grid">
-				<div class="ui-grid-col-6">
-					<p:panelGrid style="width: 380px;">
-						<f:facet name="header">
-							<p:row>
-								<p:column colspan="3">
-									 Todos os produtos
-								</p:column>
-							</p:row>
-							<p:row>
-								<p:column>
-									 Qtd
-								</p:column>
-								<p:column>
-									 Produto
-								</p:column>
-								<p:column>
-									 Valor
-								</p:column>
-							</p:row>
-						</f:facet>
-						<p:row>
-							<p:column>
-								<h:outputText value="4" style="text-al" />
-							</p:column>
-							<p:column>
-								<h:outputText value="produto" />
-							</p:column>
-							<p:column>
-								<h:outputText value="R$	4.969,96" />
-							</p:column>
-						</p:row>
-
-						<p:row>
-							<p:column colspan="2" styleClass="ui-widget-header">
-								<h:outputText value="Total" />
-							</p:column>
-							<p:column styleClass="ui-widget-header">
-								<h:outputText value="R$	4.969,96" />
-							</p:column>
-						</p:row>
-					</p:panelGrid>
-				</div>
-				<div class="ui-grid-col-6">
-					<p:commandButton style="float:right;padding:7px 16px;" value="Comprar" />
-				</div>
+				<p:commandButton style="float:right;padding:7px 16px;" value="Comprar" action="/pedido/formaPagamento?faces-redirect=true"/>
 			</div>
+			
+			<p:remoteCommand name="atualizarCarrinho" update=":formProduto:tabelaDeProduto"/>
+			<p:remoteCommand name="remoteCommandMensagemRetirarDoCarrinho"
+				delay="500"
+				action="#{carrinhoDeComprasBean.mensagemRetirarDoCarrinho()}"/>
 		</h:form>
 	</ui:define>
 </ui:composition>
