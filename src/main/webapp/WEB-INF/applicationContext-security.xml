@@ -9,9 +9,10 @@
 	
 	<http auto-config="true"> 
 		<intercept-url pattern="/pages/admin/**" access="ROLE_ADMINISTRADOR" />
+		<intercept-url pattern="/pedido/formaPagamento.xhtml" access="ROLE_ADMINISTRADOR" />
 		
-		<form-login login-page="/login.xhtml" 
-			always-use-default-target="true" 
+		<form-login login-page="/login.xhtml"
+			always-use-default-target="true"
 			default-target-url="/pages/admin/principal.xhtml"
 			authentication-failure-url="/login.xhtml?login_error=1" />
 		<logout logout-success-url="/index.xhtml"/> 
