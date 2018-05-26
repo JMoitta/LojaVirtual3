@@ -15,6 +15,7 @@ import org.primefaces.context.RequestContext;
 
 import br.com.joao.lojavirtual3.model.Fone;
 import br.com.joao.lojavirtual3.model.Pessoa;
+import br.com.joao.lojavirtual3.model.enums.TipoPessoaEnum;
 import br.com.joao.lojavirtual3.service.FoneService;
 import br.com.joao.lojavirtual3.service.PessoaService;
 
@@ -143,4 +144,7 @@ public class ManterPessoaBean implements Serializable {
 		this.pessoas = pessoas;
 	}
 	
+	public TipoPessoaEnum[] getTipoPessoaEnums() {
+		return TipoPessoaEnum.values();
+	}
 }
