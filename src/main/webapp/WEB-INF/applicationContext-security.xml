@@ -10,6 +10,9 @@
 	<http auto-config="true"> 
 		<intercept-url pattern="/pages/admin/**" access="ROLE_ADMINISTRADOR" />
 		<intercept-url pattern="/pedido/formaPagamento.xhtml" access="ROLE_ADMINISTRADOR" />
+		<intercept-url pattern="/pages/pessoa/**" access="ROLE_ADMINISTRADOR" />
+		<intercept-url pattern="/pages/formaPgto/**" access="ROLE_ADMINISTRADOR" />
+		<intercept-url pattern="/pages/produto/**" access="ROLE_ADMINISTRADOR, ROLE_FUNCIONARIO" />
 		
 		<form-login login-page="/login.xhtml"
 			always-use-default-target="true"
