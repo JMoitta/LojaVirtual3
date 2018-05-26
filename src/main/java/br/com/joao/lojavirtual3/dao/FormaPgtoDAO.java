@@ -11,12 +11,12 @@ public class FormaPgtoDAO extends DAOAbstract<FormaPgto> implements Serializable
 
 	private static final long serialVersionUID = -4450760422642399410L;
 
-	public FormaPgto buscarFonePorId(Long foneId) {
+	public FormaPgto buscarFormaPgtoPorId(Long formaPgtoId) {
 		StringBuilder condicao = new StringBuilder();
 		Map<String, Object> paramentros = new HashMap<>();
 
 		condicao.append("SELECT t FROM FormaPgto t WHERE t.id = :id");
-		paramentros.put("id", foneId);
+		paramentros.put("id", formaPgtoId);
 		
 		return buscarPor(condicao.toString(), paramentros);
 	}
