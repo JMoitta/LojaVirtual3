@@ -1,0 +1,103 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/LayoutPadrao.xhtml">
+	<ui:define name="corpoDaPagina">
+		<h:form id="formProduto">
+			<p:growl id="growl" showDetail="false" autoUpdate="true" life="3000" />
+			<center>
+				<h1>Produtos</h1>
+			</center>
+
+			<div class="ui-grid">
+				<div class="ui-grid-col-6" style="padding-right:10px;">
+					<p:panelGrid style="width: 100%;" id="todosOsProdutos">
+						<f:facet name="header">
+							<p:row>
+								<p:column colspan="3">
+									 Todos os produtos
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									 Qtd
+								</p:column>
+								<p:column>
+									 Produto
+								</p:column>
+								<p:column>
+									 Valor
+								</p:column>
+							</p:row>
+						</f:facet>
+						<ui:repeat value="#{carrinhoDeComprasBean.pedido.itensPedidos}"
+							var="itensPedido">
+							<p:row>
+								<p:column>
+									<h:outputText value="#{itensPedido.qtd}" style="text-al" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{itensPedido.produto.nome}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="R$	#{itensPedido.subtotal}" />
+								</p:column>
+							</p:row>
+						</ui:repeat>
+
+						<p:row id="valorTotal">
+							<p:column colspan="2" styleClass="ui-widget-header">
+								<h:outputText value="Total" />
+							</p:column>
+							<p:column styleClass="ui-widget-header">
+								<h:outputText value="R$	#{carrinhoDeComprasBean.pedido.total}" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</div>
+				<div class="ui-grid-col-6">
+					<h:panelGrid columns="2" id="formaDePagamento">
+				    	<h:outputLabel value="Forma de pagamento"/>
+				    	
+				    	<p:selectOneMenu value="#{carrinhoDeComprasBean.pedido.formaPgto}"
+				    		converter="FormaPgtoConverter" >
+				    		<p:ajax event="change" listener="#{carrinhoDeComprasBean.definirFormaPgto(formaPgto)}"
+				    		 	oncomplete="atualizarFormaPgto();"/>
+				    		<f:selectItems
+				    			value="#{carrinhoDeComprasBean.formaPgtos}" var="formaPgto"
+				    			itemLabel="#{formaPgto.descricao}" itemValue="#{formaPgto}"/>
+				    	</p:selectOneMenu>
+				    	
+				    	<h:outputLabel value="Numero max. de parc."/>
+				    	<p:inputText value="#{carrinhoDeComprasBean.pedido.formaPgto.numMaxParc}" readonly="true" disabled="true"/>
+				    	
+				    	<h:outputLabel value="Numero de padrão parc."/>
+				    	<p:inputText value="#{carrinhoDeComprasBean.pedido.formaPgto.numPadraoParc}" readonly="true" disabled="true"/>
+				    	
+				    	<h:outputLabel value="Intervalo em dias"/>
+				    	<p:inputText value="#{carrinhoDeComprasBean.pedido.formaPgto.intervaloDias}" readonly="true" disabled="true"/>
+				    	
+				    	<h:outputLabel value="Percentual acres."/>
+				    	<p:inputText value="#{carrinhoDeComprasBean.pedido.formaPgto.percentualAcres}" readonly="true" disabled="true"/>
+				    	
+				    </h:panelGrid>
+				    
+				    <p:commandButton style="float:right;padding:7px 16px;" value="Finalizar Compra" action="#{carrinhoDeComprasBean.finalizarPedido}" >
+				    	<p:confirm header="Confirmação" message="Deseja mesmo finalizar o pedido?" icon="ui-icon-alert" />
+				    </p:commandButton>
+				</div>
+			</div>
+			
+			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    </p:confirmDialog>
+			
+			<p:remoteCommand name="atualizarFormaPgto" update=":formProduto:formaDePagamento"/>		
+			<p:remoteCommand name="atualizarTabelaTodosOsProdutos" update=":formProduto:todosOsProdutos"/>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>
