@@ -64,8 +64,11 @@
 					</p:inputText>
 					
 					<p:outputLabel value="Tipo" style="text-align: center;" />
-					<p:inputText value="#{manterPessoaBean.pessoa.tipo}" ><!-- required="true" requiredMessage="Informe um tipo."  -->
-					</p:inputText>
+					<p:selectOneMenu value="#{manterPessoaBean.pessoa.tipoPessoaEnum}">
+						<f:selectItems value="#{manterPessoaBean.tipoPessoaEnums}"
+							var="tipoPessoaEnum" itemLabel="#{tipoPessoaEnum.role}" itemValue="#{tipoPessoaEnum}"/>
+							
+					</p:selectOneMenu><!-- required="true" requiredMessage="Informe um tipo."  -->
 				</p:panelGrid>
 			</p:fieldset>	
 			<p:fieldset id="field-fone" legend="Telefones" style="margin-top:20px">
