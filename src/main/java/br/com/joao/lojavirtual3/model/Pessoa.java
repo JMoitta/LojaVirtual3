@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.com.joao.lojavirtual3.model.enums.TipoPessoaEnum;
 import br.com.joao.lojavirtual3.util.jpa.PrimaryKeyTest;
 
 @Entity
@@ -64,8 +67,9 @@ public class Pessoa implements Serializable, PrimaryKeyTest{
 	@Column(name = "pes_senha", length = 32)
 	private String senha;
 
-	@Column(name = "pes_tipo", length = 30)
-	private String tipo;// Administrador, cliente, funcionario
+	@Enumerated(EnumType.STRING)
+	@Column(name = "pes_tipo", length = 30, nullable = false)
+	private TipoPessoaEnum tipoPessoaEnum;// Administrador, cliente, funcionario
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pessoa", cascade = CascadeType.ALL)
 	private List<Fone> fones = new ArrayList<>();
@@ -101,7 +105,6 @@ public class Pessoa implements Serializable, PrimaryKeyTest{
 	}
 
 	public String getNome() {
-		String consulta = "SELECT pessoa FROM Pessoa pessoa WHERE pessoa.tipo = 'Administrador' AND pessoa.pedidos.id IN ";
 		return nome;
 	}
 
@@ -189,14 +192,14 @@ public class Pessoa implements Serializable, PrimaryKeyTest{
 		this.senha = senha;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public TipoPessoaEnum getTipoPessoaEnum() {
+		return tipoPessoaEnum;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setTipoPessoaEnum(TipoPessoaEnum tipoPessoaEnum) {
+		this.tipoPessoaEnum = tipoPessoaEnum;
 	}
-
+	
 	public List<Fone> getFones() {
 		return fones;
 	}
