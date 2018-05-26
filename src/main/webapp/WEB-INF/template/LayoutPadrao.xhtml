@@ -31,14 +31,19 @@
 		
 		<p:menubar id="menuHeader">
 		
-			<p:submenu label="Administração">
+			<p:submenu label="Administração" 
+				rendered="#{seguranca.usuario.tipoPessoaEnum eq 'ROLE_ADMINISTRADOR' || 
+					seguranca.usuario.tipoPessoaEnum eq ROLE_ADMINISTRADOR eq 'ROLE_FUNCIONARIO'}">
 			
-				<p:menuitem value="Pessoa" outcome="/pages/pessoa/administrar" />
-				<p:menuitem value="Forma de Pagamento" outcome="/pages/formaPgto/administrar" />
+				<p:menuitem value="Pessoa" outcome="/pages/pessoa/administrar" 
+					rendered="#{seguranca.usuario.tipoPessoaEnum eq 'ROLE_ADMINISTRADOR'}"/>
 				<p:menuitem value="Produto" outcome="/pages/produto/administrar" />
+				<p:menuitem value="Forma de Pagamento" outcome="/pages/formaPgto/administrar" 
+					rendered="#{seguranca.usuario.tipoPessoaEnum eq 'ROLE_ADMINISTRADOR'}"/>
 			</p:submenu>
 			
-			<p:submenu label="Gráfico">
+			<p:submenu label="Gráfico"
+				rendered="#{seguranca.usuario.tipoPessoaEnum eq 'ROLE_ADMINISTRADOR'}">
 			
 				<p:menuitem value="Produto por mês" outcome="/pages/grafico/produtoPorMes" />
 			</p:submenu>
