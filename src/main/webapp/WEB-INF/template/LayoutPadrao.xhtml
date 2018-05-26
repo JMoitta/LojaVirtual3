@@ -50,8 +50,8 @@
 			
 			<p:submenu id="carrinho" icon="ui-icon-cart" label="(#{carrinhoDeComprasBean.totalDeProdutos()})" style="float:right;" >
 				<p:menuitem value="Total de itens (#{carrinhoDeComprasBean.totalDeProdutos()})" icon="ui-icon-plusthick"
-					outcome="/carrinho?faces-redirect=true"  />
-				<p:menuitem value="Total: R$ 21,00" icon="ui-icon-cart" disabled="true"/>
+					outcome="/pedido/carrinho?faces-redirect=true"  />
+				<p:menuitem value="Total: R$ #{carrinhoDeComprasBean.pedido.total}" icon="ui-icon-cart" disabled="true"/>
 			</p:submenu>
 			<f:facet name="options">
 				<h:commandLink value="Entrar" styleClass="ui-menubar ui-menuitem-link"
@@ -65,7 +65,7 @@
 				</h:outputLink>
 			</f:facet>
 		</p:menubar>
-		<p:remoteCommand name="totalDeProdutos" update="mainForm:menuHeader"/>
+		<p:remoteCommand name="remoteCommandUpdateMenuHeader" update=":mainForm:menuHeader"/>
 	</h:form>
 	<ui:insert name="corpoDaPagina"></ui:insert>
 	

@@ -6,29 +6,38 @@
 	template="/WEB-INF/template/LayoutPadrao.xhtml">
 	<ui:define name="corpoDaPagina">
 		<h:form id="formProduto">
-			<p:growl id="growl" showDetail="true" autoUpdate="true" life="3000"/>  
+			<p:growl id="growl" showDetail="true" autoUpdate="true" life="3000" />
 			<center>
 				<h1>Produto</h1>
 			</center>
 			<p:dataTable id="tabelaDeProduto" value="#{manterProdutoBean.produtos}" var="produto" style="margin: 10px 0;" reflow="true"
 				styleClass="ui-corner-all">
 				<p:column headerText="Nome">
-					<h:outputText value="#{produto.nome}" />
+					<center>
+						<h:outputText value="#{produto.nome}" />
+					</center>
 				</p:column>
 				<p:column headerText="Preço">
+									<center>
 					<h:outputText value="#{produto.preco}" />
+					</center>
 				</p:column>
 				<p:column headerText="Ações">
 					<p:commandButton 
 						value="Adicionar ao Carinho"
 						process="@this"
-						disabled=""
-						oncomplete="totalDeProdutos();"
-						action="#{carrinhoDeComprasBean.adicionarProduto(produto)}">
+						update="@this"
+						disabled="#{carrinhoDeComprasBean.produtoNaoEstaNoCarrinho(produto)}"
+						action="#{carrinhoDeComprasBean.adicionarProduto(produto)}"
+						oncomplete="remoteCommandUpdateMenuHeader();mensagem();"
+						>
 						
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+			
+			<p:remoteCommand name="mensagem" action="#{carrinhoDeComprasBean.mensagem()}" delay="500"/>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>
