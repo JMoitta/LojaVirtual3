@@ -13,7 +13,7 @@ public class HibernateUtil {
 	private static SessionFactory buildSessionFactory() {
 		try{
 			Configuration cfg = new Configuration();
-			cfg.configure("hibernate.cfg.xml");
+			cfg.configure("./hibernate.cfg.xml");
 			
 			StandardServiceRegistryBuilder registradorServico = new StandardServiceRegistryBuilder();
 			registradorServico.applySettings(cfg.getProperties());

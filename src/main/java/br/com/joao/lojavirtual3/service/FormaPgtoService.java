@@ -48,4 +48,8 @@ public class FormaPgtoService implements Serializable {
 	public FormaPgtoDAO getFormaPgtoDAO() {
 		return formaPgtoDAO;
 	}
+
+	public FormaPgto formaPgtoPadrao() {
+		return this.buscarFormaPgtoPorId(01l);
+	}
 }
