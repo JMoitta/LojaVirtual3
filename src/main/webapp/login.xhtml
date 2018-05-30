@@ -43,14 +43,15 @@
 	        </p:tab>
 	        <p:tab title="Cadastrar">	
 	        	<h:form>
+	        		<p:growl id="growl" showDetail="true" autoUpdate="true"/>
 	        		<p:fieldset legend="Credencias" style="margin-top:20px">
 	        			<h:panelGrid columns="2" cellpadding="5" columnClasses="jm-form-label, jm-form-input">
 			        		<p:outputLabel value="E-mail" style="text-align: center;" />
-							<p:inputText value="#{manterPessoaBean.pessoa.email}" ><!--  required="true" requiredMessage="Informe um e-mail."  -->
+							<p:inputText value="#{loginRegisterBean.pessoa.email}" required="true" requiredMessage="Informe um e-mail." ><!--  required="true" requiredMessage="Informe um e-mail."  -->
 							</p:inputText>
 			
 							<p:outputLabel value="Senha" style="text-align: center;" />
-							<p:inputText value="#{manterPessoaBean.pessoa.senha}" ><!-- required="true" requiredMessage="Informe um senha."  -->
+							<p:inputText value="#{loginRegisterBean.pessoa.senha}" required="true" requiredMessage="Informe um senha." ><!-- required="true" requiredMessage="Informe um senha."  -->
 							</p:inputText>
 							
 						</h:panelGrid>
@@ -59,19 +60,19 @@
 	        		<p:fieldset legend="Dados Pessoas" style="margin-top:20px">			
 						<h:panelGrid columns="2" cellpadding="5" columnClasses="jm-form-label, jm-form-input">
 							<p:outputLabel value="Nome" style="text-align: center;" />
-							<p:inputText value="#{manterPessoaBean.pessoa.nome}" required="true" requiredMessage="Informe o Nome">
+							<p:inputText value="#{loginRegisterBean.pessoa.nome}" required="true" requiredMessage="Informe o Nome">
 							</p:inputText>
 					
 							<p:outputLabel value="CPF" style="text-align: center;" />
-							<p:inputMask value="#{manterPessoaBean.pessoa.cpf}" mask="999.999.999-99" required="true" requiredMessage="Informe um CPF." >
+							<p:inputMask value="#{loginRegisterBean.pessoa.cpf}" mask="999.999.999-99" required="true" requiredMessage="Informe um CPF." >
 							</p:inputMask>
 					
 							<p:outputLabel value="RG" style="text-align: center;" />
-							<p:inputText value="#{manterPessoaBean.pessoa.rg}" required="true" requiredMessage="Informe um RG." >
+							<p:inputText value="#{loginRegisterBean.pessoa.rg}" required="true" requiredMessage="Informe um RG." >
 							</p:inputText>
 					
 							<p:outputLabel value="Data de nascimento" />
-							<p:calendar value="#{manterPessoaBean.pessoa.dataNasc}" navigator="true" pattern="dd/MM/yyyy"
+							<p:calendar value="#{loginRegisterBean.pessoa.dataNasc}" navigator="true" pattern="dd/MM/yyyy"
 								required="true" requiredMessage="Informe um data de nascimento.">
 							</p:calendar>
 					
@@ -81,29 +82,29 @@
 					<p:fieldset legend="Endereço" style="margin-top:20px">			
 						<h:panelGrid columns="2" cellpadding="5" columnClasses="jm-form-label, jm-form-input">
 							<p:outputLabel value="Rua" />
-							<p:inputText value="#{manterPessoaBean.pessoa.rua}" ><!-- required="true" requiredMessage="Informe um rua."  -->
+							<p:inputText value="#{loginRegisterBean.pessoa.rua}" ><!-- required="true" requiredMessage="Informe um rua."  -->
 							</p:inputText>
 					
 							<p:outputLabel value="Bairro" />
-							<p:inputText value="#{manterPessoaBean.pessoa.bairro}" ><!--  required="true" requiredMessage="Informe um bairro" -->
+							<p:inputText value="#{loginRegisterBean.pessoa.bairro}" ><!--  required="true" requiredMessage="Informe um bairro" -->
 							</p:inputText>
 					
 							<p:outputLabel value="Cidade" />
-							<p:inputText value="#{manterPessoaBean.pessoa.cidade}" ><!--  required="true" requiredMessage="Informe um cidade."  -->
+							<p:inputText value="#{loginRegisterBean.pessoa.cidade}" ><!--  required="true" requiredMessage="Informe um cidade."  -->
 							</p:inputText>
 	
 							<p:outputLabel value="UF" style="text-align: center;" />
-							<p:inputText value="#{manterPessoaBean.pessoa.uf}" ><!--  required="true" requiredMessage="Informe um uf."  -->
+							<p:inputText value="#{loginRegisterBean.pessoa.uf}" ><!--  required="true" requiredMessage="Informe um uf."  -->
 							</p:inputText>
 					
 							<p:outputLabel value="CEP" style="text-align: center;" />
-							<p:inputText value="#{manterPessoaBean.pessoa.cep}" ><!--  required="true" requiredMessage="Informe um cep."  -->
+							<p:inputText value="#{loginRegisterBean.pessoa.cep}" ><!--  required="true" requiredMessage="Informe um cep."  -->
 							</p:inputText>
 						</h:panelGrid>
 					</p:fieldset>
 					<p:toolbar style="margin-top:20px">
 						<f:facet name="right">
-							<p:commandButton value="Cadastrar" icon="ui-icon-disk" action="#{manterPessoaBean.salvarPessoa}"/>
+							<p:commandButton value="Cadastrar" icon="ui-icon-disk" action="#{loginRegisterBean.cadastrarPessoa}"/>
 						</f:facet>
 					</p:toolbar>
 	        	</h:form>
