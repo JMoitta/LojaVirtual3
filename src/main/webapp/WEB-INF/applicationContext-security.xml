@@ -9,18 +9,19 @@
 	
 	<http auto-config="true"> 
 		<intercept-url pattern="/pages/admin/**" access="ROLE_ADMINISTRADOR" />
-		<intercept-url pattern="/pedido/formaPagamento.xhtml" access="ROLE_ADMINISTRADOR" />
+		<intercept-url pattern="/pedido/formaPagamento.xhtml" access="ROLE_ADMINISTRADOR, ROLE_FUNCIONARIO, ROLE_CLIENTE" />
 		<intercept-url pattern="/pages/pessoa/**" access="ROLE_ADMINISTRADOR" />
 		<intercept-url pattern="/pages/formaPgto/**" access="ROLE_ADMINISTRADOR" />
 		<intercept-url pattern="/pages/produto/**" access="ROLE_ADMINISTRADOR, ROLE_FUNCIONARIO" />
 		
 		<form-login login-page="/login.xhtml"
 			always-use-default-target="true"
-			default-target-url="/pages/admin/principal.xhtml"
+			authentication-success-handler-ref="successHandler"
 			authentication-failure-url="/login.xhtml?login_error=1" />
 		<logout logout-success-url="/index.xhtml"/> 
 		<remember-me /> 
 	</http>
+	<beans:bean id="successHandler" class="br.com.joao.lojavirtual3.util.redirect.RedirecionaPaginaPadrao"/>
 	<authentication-manager>
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="hibernateDbDataSource" 
