@@ -1,6 +1,11 @@
 package br.com.joao.lojavirtual3.exception;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.FacesContext;
 
 public class NegocioException extends Exception {
 
@@ -8,6 +13,7 @@ public class NegocioException extends Exception {
     private Severity severity;
     private String summary;
     private String detail;
+    private List<NegocioException> negocioExceptions;
 
     public NegocioException(String detail) {
         super(detail);
@@ -51,6 +57,37 @@ public class NegocioException extends Exception {
 
 	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+	
+	public List<NegocioException> getNegocioExceptions() {
+		if(this.negocioExceptions == null) {
+			negocioExceptions = new ArrayList<>();
+		}
+		return negocioExceptions;
+	}
+	
+	public void addNegocioException(NegocioException negocioException) {
+		getNegocioExceptions().add(negocioException);
+	}
+
+	public void todasAsMensagens() {
+		FacesContext.getCurrentInstance()
+			.addMessage(
+				null,
+				new FacesMessage(
+					this.getSeverity(),
+					this.getSummary(),
+					this.getDetail()));
+		
+		for(NegocioException negocioException : this.getNegocioExceptions()) {
+			FacesContext.getCurrentInstance()
+				.addMessage(
+					null,
+					new FacesMessage(
+						negocioException.getSeverity(),
+						negocioException.getSummary(),
+						negocioException.getDetail()));
+		}
 	}
 
     
