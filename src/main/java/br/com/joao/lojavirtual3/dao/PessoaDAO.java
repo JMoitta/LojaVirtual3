@@ -21,12 +21,26 @@ public class PessoaDAO extends DAOAbstract<Pessoa> implements Serializable{
 		return buscarPor(condicao.toString(), paramentros);
 	}
 
-	public Pessoa buscarPessoaPorEmail(String email) {
+	public Pessoa buscarPessoaPorEmail(Pessoa pessoa) {
 		StringBuilder condicao = new StringBuilder();
 		Map<String, Object> paramentros = new HashMap<>();
 
 		condicao.append("SELECT t FROM Pessoa t WHERE t.email = :email");
-		paramentros.put("email", email);
+		paramentros.put("email", pessoa.getEmail());
+		
+		return buscarPor(condicao.toString(), paramentros);
+	}
+
+	public Pessoa buscarPorEmailECpfERg(Pessoa pessoa) {
+		
+		StringBuilder condicao = new StringBuilder();
+		Map<String, Object> paramentros = new HashMap<>();
+
+		condicao.append("SELECT t FROM Pessoa t WHERE t.email = :email AND t.cpf = :cpf AND t.rg = :rg");
+		
+		paramentros.put("email", pessoa.getEmail());
+		paramentros.put("cpf", pessoa.getCpf());
+		paramentros.put("rg", pessoa.getRg());
 		
 		return buscarPor(condicao.toString(), paramentros);
 	}
