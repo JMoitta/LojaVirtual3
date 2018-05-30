@@ -53,6 +53,16 @@ public class PessoaService implements Serializable {
 	}
 
 	public Pessoa buscarPessoaPorEmail(String email) throws Exception {
-		return pessoaDAO.buscarPessoaPorEmail(email);
+		Pessoa pessoa = new Pessoa();
+		pessoa.setEmail(email);
+		return pessoaDAO.buscarPessoaPorEmail(pessoa);
+	}
+	
+	public Pessoa buscarPessoaPorEmail(Pessoa pessoa) throws Exception {
+		return pessoaDAO.buscarPessoaPorEmail(pessoa);
+	}
+
+	public boolean existeUsuario(Pessoa pessoa) {
+		return pessoaDAO.buscarPessoaPorEmail(pessoa) != null;
 	}
 }
