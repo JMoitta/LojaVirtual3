@@ -41,8 +41,9 @@ public class CarrinhoDeComprasBean implements Serializable {
 		
 		itensPedidos.add(ip);
 		
-		this.produto = produto;
 		calcularValorPedido();
+
+		this.produto = produto;
 //		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO , "Pedido finalizado com sucesso!", null));
 		
 	}
