@@ -71,13 +71,14 @@ public class NegocioException extends Exception {
 	}
 
 	public void todasAsMensagens() {
-		FacesContext.getCurrentInstance()
-			.addMessage(
-				null,
-				new FacesMessage(
-					this.getSeverity(),
-					this.getSummary(),
-					this.getDetail()));
+		if(getSeverity() != null)
+			FacesContext.getCurrentInstance()
+				.addMessage(
+					null,
+					new FacesMessage(
+						this.getSeverity(),
+						this.getSummary(),
+						this.getDetail()));
 		
 		for(NegocioException negocioException : this.getNegocioExceptions()) {
 			FacesContext.getCurrentInstance()
