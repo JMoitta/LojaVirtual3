@@ -74,6 +74,9 @@ public class Pessoa implements Serializable, PrimaryKeyTest{
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pessoa", cascade = CascadeType.ALL)
 	private List<Fone> fones = new ArrayList<>();
 
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pessoa", cascade = CascadeType.ALL)
+	private List<Pedido> pedidos = new ArrayList<>();
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -206,6 +209,14 @@ public class Pessoa implements Serializable, PrimaryKeyTest{
 
 	public void setFones(List<Fone> fones) {
 		this.fones = fones;
+	}
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+	
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	@Override
